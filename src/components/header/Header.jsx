@@ -24,21 +24,21 @@ const Header = () => {
             <span>Афиша</span>
           </a>
           <a
-            href="/sessions"
+            href="/"
             className="flex items-center space-x-2 hover:text-red-500"
           >
             <img src={header2} alt="Header Icon 2" className="w-6 h-6" />
             <span>Сеансы</span>
           </a>
           <a
-            href="/tickets"
+            href="/"
             className="flex items-center space-x-2 hover:text-red-500"
           >
             <img src={header3} alt="Header Icon 3" className="w-6 h-6" />
             <span>Билеты</span>
           </a>
           <a
-            href="/search"
+            href="/"
             className="flex items-center space-x-2 hover:text-red-500"
           >
             <img src={header4} alt="Header Icon 4" className="w-6 h-6" />
