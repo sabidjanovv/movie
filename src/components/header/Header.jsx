@@ -4,14 +4,16 @@ import header2 from "@/assets/images/header2.png";
 import header3 from "@/assets/images/header3.png";
 import header4 from "@/assets/images/header4.png";
 import logo from "@/assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate()
   return (
     <header className="bg-black text-white">
       <div className="container mx-auto flex items-center justify-between px-8 py-4">
         {/* Left Section: Logo */}
         <div className="flex items-center">
-          <img src={logo} alt="Logo" className="w-16 h-auto" />
+          <img onClick={()=> navigate("/")} src={logo} alt="Logo" className="w-16 h-auto" />
         </div>
 
         {/* Navigation Menu */}
