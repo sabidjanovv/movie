@@ -10,9 +10,11 @@ import "swiper/css/autoplay";
 import "./Swiper.css";
 
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 export const Carousel = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <div className="my-5 container mx-auto">
@@ -35,7 +37,7 @@ export const Carousel = ({ data }) => {
       >
         {data.results?.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="relative w-full h-[400px] lg:h-full">
+            <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
               {/* Background Image */}
               <img
                 src={`${import.meta.env.VITE_IMAGE_URL}${item.backdrop_path}`}
@@ -45,15 +47,15 @@ export const Carousel = ({ data }) => {
 
               {/* Overlay Content */}
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent p-4">
-                <h2 className="text-white text-3xl font-bold">
+                <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold">
                   {item.title || "No Title"}
                 </h2>
-                <p className="text-gray-300 text-sm mt-2">
+                <p className="text-gray-300 text-xs sm:text-sm mt-2">
                   {item.release_date} • {item.original_language.toUpperCase()}
                 </p>
                 {/* Smotret Button */}
                 <button
-                  onClick={() => alert(`Watching ${item.title}`)}
+                  onClick={() => navigate(`/product/${item.id}`)}
                   className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-500 transition"
                 >
                   Смотреть
@@ -64,7 +66,6 @@ export const Carousel = ({ data }) => {
         ))}
       </Swiper>
 
-      {/* Thumbs Swiper */}
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
@@ -80,7 +81,7 @@ export const Carousel = ({ data }) => {
             <img
               src={`${import.meta.env.VITE_IMAGE_URL}${item.backdrop_path}`}
               alt="Thumbnail"
-              className="w-full h-[80px] object-cover rounded-md hover:opacity-80 transition"
+              className="w-full h-[80px] sm:h-[100px] md:h-[120px] object-cover rounded-md hover:opacity-80 transition"
             />
           </SwiperSlide>
         ))}

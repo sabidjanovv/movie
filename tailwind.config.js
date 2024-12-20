@@ -8,6 +8,13 @@ export default {
       ...colors,
       primary: "#C61F1F",
       secondary: "#1E1E1E",
+      // gray: {
+      //   400: "#B0B0B0", // Adjust if default doesn't match
+      //   800: "#262626", // Adjust as needed
+      // },
+      // red: {
+      //   600: "#FF4040", // Bright red for active "О фильме"
+      // },
     },
     fontFamily: {},
     container: {

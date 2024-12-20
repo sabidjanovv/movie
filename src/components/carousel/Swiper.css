@@ -1,3 +1,4 @@
+/* General Swiper styles */
 .swiper {
   width: 100%;
   height: 100%;
@@ -14,30 +15,21 @@
   align-items: center;
 }
 
-.swiper {
-  width: 100%;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.swiper-slide {
-  background-size: cover;
-  background-position: center;
-}
-
+/* Main swiper with responsive height */
 .mySwiper2 {
   height: 600px;
   width: 100%;
 }
+
 .mySwiper2 .swiper-slide {
   border-radius: 12px;
   overflow: hidden;
 }
 
+/* Thumbs swiper with responsive design */
 .mySwiper {
   height: 100px;
-  width: 500px;
+  width: 100%;
   box-sizing: border-box;
   padding: 20px 0;
 }
@@ -60,6 +52,8 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* Navigation buttons styling */
 .CardSwiper .swiper-button-next,
 .CardSwiper .swiper-button-prev,
 .mySwiper .swiper-button-next,
@@ -72,13 +66,16 @@
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
 }
+
 .CardSwiper .swiper-button-next,
 .CardSwiper .swiper-button-prev {
   top: 50%;
 }
+
 .mySwiper .swiper-button-prev {
   left: 10px;
 }
+
 .CardSwiper .swiper-button-next::after,
 .CardSwiper .swiper-button-prev::after,
 .mySwiper .swiper-button-next::after,
@@ -90,4 +87,92 @@
 .CardSwiper {
   height: auto;
   width: 100%;
+}
+
+/* Media Queries for responsiveness */
+
+/* On mobile devices (width: 640px and below) */
+@media (max-width: 640px) {
+  /* Main Swiper */
+  .mySwiper2 {
+    height: 400px;  /* Smaller height for mobile */
+  }
+
+  .mySwiper {
+    height: 80px;   /* Adjust height for thumbnails */
+  }
+
+  .mySwiper .swiper-slide {
+    width: 50%;  /* Display only 2 thumbnails */
+  }
+
+  /* Reduce opacity of thumbnail swiper */
+  .mySwiper .swiper-slide-thumb-active {
+    opacity: 0.7;
+  }
+
+  /* Navigation buttons */
+  .CardSwiper .swiper-button-next,
+  .CardSwiper .swiper-button-prev {
+    width: 25px;
+    height: 25px;
+    right: 5px;
+    top: 50%;
+  }
+}
+
+/* On tablet devices (width: 768px and below) */
+@media (max-width: 768px) {
+  .mySwiper2 {
+    height: 500px;  /* Smaller height for tablet */
+  }
+
+  .mySwiper {
+    height: 90px;   /* Adjust height for thumbnails */
+  }
+
+  .mySwiper .swiper-slide {
+    width: 33.33%;  /* Display 3 thumbnails */
+  }
+
+  .mySwiper .swiper-slide-thumb-active {
+    opacity: 0.9;
+  }
+
+  /* Navigation buttons */
+  .CardSwiper .swiper-button-next,
+  .CardSwiper .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+    right: 8px;
+    top: 50%;
+  }
+}
+
+/* On larger screens (width: 1024px and above) */
+@media (min-width: 1024px) {
+  .mySwiper2 {
+    height: 600px;  /* Default height for desktop */
+  }
+
+  .mySwiper {
+    height: 100px;
+  }
+
+  .mySwiper .swiper-slide {
+    width: 25%;  /* Display 4 thumbnails */
+  }
+
+  .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  /* Navigation buttons */
+  .CardSwiper .swiper-button-next,
+  .CardSwiper .swiper-button-prev {
+    width: 35px;
+    height: 35px;
+    right: 10px;
+    top: 60%;
+  }
 }

@@ -10,24 +10,31 @@ import { Navigation } from "swiper/modules";
 
 const Movies = ({ data }) => {
   console.log(data);
+
   return (
     <div>
-      <div className="flex gap-2 justify-center flex-wrap container">
-        <Swiper
-          loop={true}
-          navigation={true}
-          spaceBetween={10}
-          slidesPerView={5}
-          modules={[Navigation]}
-          className="CardSwiper"
-        >
-          {data.results?.map((item, index) => (
-            <SwiperSlide key={index} className="rounded-xl">
-              <MovieItem {...item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      {!data?.results || data.results.length === 0 ? (
+        <div className="text-center text-white text-lg mt-4">
+          Фильмы недоступны.
+        </div>
+      ) : (
+        <div className="flex gap-2 justify-center flex-wrap container">
+          <Swiper
+            loop={true}
+            navigation={true}
+            spaceBetween={10}
+            slidesPerView={5}
+            modules={[Navigation]}
+            className="CardSwiper"
+          >
+            {data.results.map((item, index) => (
+              <SwiperSlide key={index} className="rounded-xl">
+                <MovieItem {...item} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
     </div>
   );
 };

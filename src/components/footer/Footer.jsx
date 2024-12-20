@@ -18,11 +18,10 @@ const Footer = () => {
     <footer className="container bg-[#111111] mt-10 text-white py-8 rounded-lg">
       <div className="container mx-auto flex flex-wrap justify-between items-start px-4">
         <div className="flex flex-col items-start mb-6 md:mb-0">
-          <div className="mb-4">
-            <img src={footer1} alt="Logo" className="w-16 h-16" />
+          <div className="mb-8 h-5">
+            <img src={footer1} alt="Logo" className="w-20 h-10" />
           </div>
 
-          {/* Download Buttons */}
           <div className="flex flex-col gap-2">
             <a href="#">
               <img src={footer2} alt="Google Play" className="h-12" />
