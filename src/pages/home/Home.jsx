@@ -47,7 +47,6 @@ const Home = () => {
   // }, []);
   return (
     <div className="bg-black">
-      <Header />
       <Genre
         setPage={setPage}
         data={genres}
