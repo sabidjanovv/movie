@@ -1,4 +1,5 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Movies from "../../components/movies/Movies";
 import { request } from "../../api";
 import { Carousel } from "../../components/carousel/Carousel";
@@ -7,44 +8,44 @@ import Footer from "../../components/footer/Footer";
 import Genre from "../../components/genre/Genre";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [genres, setGenres] = useState(null);
-  const [selectedGenres, setSelectedGenres] = useState([]); 
+  const [page, setPage] = React.useState(1);
+  const [selectedGenres, setSelectedGenres] = React.useState([]);
+
+  const {
+    data: genres,
+    isLoading: genresLoading,
+    error: genresError,
+  } = useQuery({
+    queryKey: ["genres"],
+    queryFn: () =>
+      request.get("/genre/movie/list").then((res) => res.data.genres),
+  });
+
+  const {
+    data: movies,
+    isLoading: moviesLoading,
+    error: moviesError,
+  } = useQuery({
+    queryKey: ["movies", { page, selectedGenres }],
+    queryFn: () =>
+      request("/discover/movie", {
+        params: {
+          page,
+          // without_genres: "18,10749",
+          with_genres: selectedGenres.join(","),
+        },
+      }).then((res) => res.data),
+    keepPreviousData: true,
+  });
 
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  // useEffect(()=>{
-  //   setPage(1)
-  // }, [selectedGenres])
+  if (genresLoading || moviesLoading) return <p>Loading...</p>;
+  if (genresError || moviesError)
+    return <p>Error: {genresError?.message || moviesError?.message}</p>;
 
-  useEffect(() => {
-    request.get("/genre/movie/list").then((res) => setGenres(res.data.genres));
-  }, []);
-
-  useEffect(() => {
-    request("/discover/movie", {
-      params: {
-        page: page,
-        without_genres: "18,10749",
-        with_genres: selectedGenres.join(","),
-      },
-    })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.error("Error fetching movies:", err);
-      });
-  }, [page, selectedGenres]);
-
-  // useEffect(() => {
-  //   request("/discover/movie").then((res) => {
-  //     setData(res.data);
-  //   });
-  // }, []);
   return (
     <div className="bg-black">
       <Genre
@@ -53,8 +54,8 @@ const Home = () => {
         selectedGenres={selectedGenres}
         setSelectedGenres={setSelectedGenres}
       />
-      <Carousel data={data} />
-      <Movies data={data} />
+      <Carousel data={movies} />
+      <Movies data={movies} />
       <Footer />
     </div>
   );

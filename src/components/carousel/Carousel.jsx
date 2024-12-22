@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -18,7 +17,6 @@ export const Carousel = ({ data }) => {
 
   return (
     <div className="my-5 container mx-auto">
-      {/* Main Swiper */}
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
@@ -28,24 +26,22 @@ export const Carousel = ({ data }) => {
         spaceBetween={10}
         navigation={true}
         autoplay={{
-          delay: 3000, // Slide changes every 3 seconds
-          disableOnInteraction: false, // Keeps autoplay active after interaction
+          delay: 3000, 
+          disableOnInteraction: false, 
         }}
         thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs, Autoplay]} // Include Autoplay module
+        modules={[FreeMode, Navigation, Thumbs, Autoplay]}
         className="mySwiper2"
       >
         {data.results?.map((item) => (
           <SwiperSlide key={item.id}>
             <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
-              {/* Background Image */}
               <img
                 src={`${import.meta.env.VITE_IMAGE_URL}${item.backdrop_path}`}
                 alt="Backdrop"
                 className="w-full h-full object-cover rounded-lg"
               />
 
-              {/* Overlay Content */}
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent p-4">
                 <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold">
                   {item.title || "No Title"}
@@ -53,7 +49,6 @@ export const Carousel = ({ data }) => {
                 <p className="text-gray-300 text-xs sm:text-sm mt-2">
                   {item.release_date} • {item.original_language.toUpperCase()}
                 </p>
-                {/* Smotret Button */}
                 <button
                   onClick={() => navigate(`/product/${item.id}`)}
                   className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-500 transition"
